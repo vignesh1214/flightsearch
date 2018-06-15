@@ -7,13 +7,7 @@ amadeus = Client(
     client_secret='CFkVCJmrGBfEheLs'
 )
 
-trips = input("How many trips do you want to make? ")
-origin = input("Origin ")
-inputdate = input("Date of Travel starting range -- July? ")
-enddate = input("Return before -- July? ")
-duration = input("Duration of stay at each place- ")
 
-destination= input("Destination ")
 
 
 def flightsearch(startDate,endDate,duration,origin,destination):
@@ -33,8 +27,18 @@ def flightsearch(startDate,endDate,duration,origin,destination):
 	return dateprice
 	
 
+trips = input("How many trips do you want to make? ")
+origin = input("Origin ")
+inputdate = input("Date of Travel starting range -- July? ")
+enddate = input("Return before -- July? ")
+duration = input("Duration of stay at each place- ")
+destination= raw_input("Destination ").split(",")
 
-df_1= pd.Series(flightsearch(inputdate,enddate,duration,origin,destination))
+for i in range(0,trips-1):
+	df_1= pd.Series(flightsearch(inputdate,enddate,duration,origin,destination))
+
+
+
 #print(df)
 #df = pd.Series(dateprice)
 print(df.sort_values().head(3))
