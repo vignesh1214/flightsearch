@@ -33,13 +33,13 @@ def flightsearch(startDate,endDate,duration,origin,destination):
 		price = response.data[0].get('offerItems')[0].get('price')
 		total = float(price.get('total')) + float(price.get('totalTaxes'))
 		#print(total)
-		dateprice[startingDate + '-' + returningDate]=total
+		dateprice[startingDate + '--' + returningDate]=total
 	return dateprice
 	
 
 trips = int(input("How many trips do you want to make? "))
 origin = input("Origin ")
-destination= input("Destinations ").split(",")
+destination= list(input("Destinations ").split(","))
 #destination = input("Destination ")
 origindate = input('Enter origin date in YYYY-MM-DD format ')
 enddate = input("Return before in (YYYY-MM-DD format) ")
@@ -50,6 +50,7 @@ flight_list={}
 for i in range(0,trips):
 	df= pd.Series(flightsearch(date_entry(origindate),date_entry(enddate),duration,origin,destination[i]))
 	flight_list[origin +'-' + destination[i]]=df.sort_values().head(3)
+	#print(df.sort_values().head(3))
 
 
 #print(df)
